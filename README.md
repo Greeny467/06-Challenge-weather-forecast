@@ -1,1 +1,4 @@
 # 06-Challenge-weather-forecast
+
+## What is this?
+This is a weather forecasting website built from scratch for a school project. This website includes two pages, the first with a search bar and a simple history card holder, and the second with a searchbar/history column on the left and the search results or city weather data on the right. When you search up a city, you are presented with the search results. When you click on the city you are looking for, you are presented with current weather data and a 5 day forecast for that city. When you click a history link, either on the home page or the search page, you are taken to the weather data and 5 day forecast of the city the history link is associated with. This project uses openweathermap current weater, geocoding, and 5 day 3 hour forecast api's. 
