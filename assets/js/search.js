@@ -1215,7 +1215,7 @@ function cityButtonPress(cityChoice, stateOfCity, event){
     var cityArray = [cityChoice, stateOfCity]
 
     var testHistoryArray = localStorage.getItem("history")
-    console.log(testHistoryArray)
+
     if (testHistoryArray == null || testHistoryArray == ""){
         var historyArray = [cityArray]
         localStorage.setItem("history", JSON.stringify(historyArray))
@@ -1226,7 +1226,6 @@ function cityButtonPress(cityChoice, stateOfCity, event){
         var currentArray = historyArray[i]
         if (currentArray[0] == cityArray[0] && currentArray[1] == cityArray[1]){
             historyArray.splice(i, 1)
-            console.log("cut")
         }
         if (historyArray[i] == ""){
             historyArray.splice(i,1)
@@ -1245,19 +1244,26 @@ function cityButtonPress(cityChoice, stateOfCity, event){
     for (i = historyTab.children.length; i>0; i--){
         historyTab.firstChild.remove()
     }
-    for (i = historyArray.length; i > -1; i--){
+    for (i = historyArray.length -1; i > -1; i--){
+        currentArray = historyArray[i]
+        console.log("here" + currentArray)
         var historyButton = document.createElement("button")
         historyButton.textContent = historyArray[i]
         historyButton.setAttribute("id", historyArray[i])
+        historyButton.setAttribute("data-name", currentArray[0])
+        console.log(historyButton.dataset.name + "   !")
+        historyButton.setAttribute("data-state", currentArray[1])
         historyTab.appendChild(historyButton)
 
         currentArray = historyArray[i]
 
         historyButton.addEventListener("click", function(event1){
-            target = event.target
+            target = event1.target
 
-            ButtoncityChoice = currentArray[0]
-            ButtonstateOfCity = currentArray[1]
+            ButtoncityChoice = target.dataset.name
+            console.log(ButtoncityChoice)
+            ButtonstateOfCity = target.dataset.state
+            console.log(ButtonstateOfCity + "888")
             cityButtonPress(ButtoncityChoice, ButtonstateOfCity, event1)
         })
     }
@@ -1372,26 +1378,23 @@ function displayReturn(var1, var2){
         state = "Unknown";
     }
 
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city +","+ state + ",US&limit=1&appid=5829f688424237daa5983eb7b745d3bb"
+    var requestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city +","+ state + ",US&limit=1&appid=5829f688424237daa5983eb7b745d3bb"
     fetch(requestURL)
         .then (function(response) {
             return response.json()
         })
         .then (function(data) {
-            console.log(data)
             var latitude = data[0].lat
             var longitude = data[0].lon
-            console.log(latitude, longitude)
             requestURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=5829f688424237daa5983eb7b745d3bb&units=imperial"
             fetch(requestURL)
                 .then(function(response){
                     return response.json()
                 })
                 .then(function(data){
-                    console.log(data)
                     
                     var iconCode = data.weather[0].icon
-                    var iconLink = "http://openweathermap.org/img/w/" + iconCode + ".png"
+                    var iconLink = "https://openweathermap.org/img/w/" + iconCode + ".png"
                     var tempNow = data.main.temp
                     var humidityNow = data.main.humidity
                     var windNow = data.wind.speed
@@ -1499,7 +1502,6 @@ function displayReturn(var1, var2){
 
 function returnCity(){
     var workingObject = JSON.parse(localStorage.getItem("currentCity"))
-    console.log(workingObject)
     cityChoice = workingObject.city
     stateOfCity = workingObject.state
 
@@ -1519,7 +1521,6 @@ function searchReturn(){
     for(i=0; i < states.length;i++){
         var lowerState = states[i].map(word => word.toLowerCase())
         if(lowerState.includes(lowerCurrentSearch)){
-            console.log(currentSearch +", " + stateNames[i])
             var newCard = document.createElement("div")
             newCard.className="card col-2 m-4 align-items-center cityCard"
             newCard.setAttribute("id", stateNames[i])
@@ -1610,45 +1611,50 @@ else if (rightSideState == "display"){
     for (i = historyTab.children.length; i>0; i--){
         historyTab.firstChild.remove()
     }
-    for (i = historyArray.length; i > -1; i--){
+    for (i = historyArray.length - 1; i > -1; i--){
         var historyButton = document.createElement("button")
         historyButton.textContent = historyArray[i]
         historyButton.setAttribute("id", historyArray[i])
+        historyButton.setAttribute("data-name", currentArray[0])
+        historyButton.setAttribute("data-state", currentArray[1])
         historyTab.appendChild(historyButton)
 
         currentArray = historyArray[i]
 
         historyButton.addEventListener("click", function(event1){
-            target = event.target
+            target = event1.target
 
-            ButtoncityChoice = currentArray[0]
-            ButtonstateOfCity = currentArray[1]
+            ButtoncityChoice = target.dataset.name
+            console.log(ButtoncityChoice)
+            ButtonstateOfCity = target.dataset.state
+            console.log(ButtonstateOfCity)
 
             var elementAmount= rightSide.children.length
-    console.log(elementAmount)
-    if (elementAmount =1){
-        cardAmount = cardHolder.children.length
-        for(i = 0; i < cardAmount; i++){
-            cardHolder.firstChild.remove()
-        }
-    }
-    if (elementAmount = 2){
-        var data1 = document.querySelector("#oneDay")
-        var data2 = document.querySelector("#fiveDay")
+            console.log(elementAmount)
+            if (elementAmount =1){
+                cardAmount = cardHolder.children.length
+                for(i = 0; i < cardAmount; i++){
+                    cardHolder.firstChild.remove()
+                }
+            }
+            if (elementAmount = 2){
+                var data1 = document.querySelector("#oneDay")
+                var data2 = document.querySelector("#fiveDay")
 
-        cardAmount1 = data1.children.length
-        for(i = 0; i < cardAmount1; i++){
-            data1.firstChild.remove()
-        }
+                cardAmount1 = data1.children.length
+                for(i = 0; i < cardAmount1; i++){
+                    data1.firstChild.remove()
+                }
 
-        cardAmount2 = data2.children.length
-        for(i = 0; i < cardAmount2; i++){
-            data2.firstChild.remove()
-        }
-    }
-    for(i = 0;i < elementAmount;i++){
-        rightSide.firstChild.remove();
-    }
+                cardAmount2 = data2.children.length
+                for(i = 0; i < cardAmount2; i++){
+                    data2.firstChild.remove()
+                }
+            }
+            
+            for(i = 0;i < elementAmount;i++){
+                rightSide.firstChild.remove();
+            }
 
             cityButtonPress(ButtoncityChoice, ButtonstateOfCity, event1)
         })
