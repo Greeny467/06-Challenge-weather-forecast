@@ -1,0 +1,90 @@
+
+header{
+    padding:15px;
+    width:100%;
+    background-color:brown;
+    color:white;
+    font-size:25px;
+}
+main{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    height:90vh;
+}
+
+h3{
+    margin:5%;
+    margin-top:0px;
+}
+
+#left{
+    border:1px solid black;
+    width:20%;
+    display:block;
+    justify-content:center;
+    height:100;
+}
+#searchButton{
+    width:30%;
+    height:10%;
+    margin:30%;
+    margin-top:5%;
+    margin-bottom:10%
+}
+#searchBar{
+    width:50%;
+    justify-self:center;
+    margin:20%;
+    margin-bottom:0px;
+}
+
+#right{
+    width:80%;
+    height:100%;
+}
+#cardHolder{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    width:100%;
+}
+
+.cityCard{
+    height:20vh;
+    text-align:center;
+    padding:5%;
+    padding-bottom:10%;
+}
+#results{
+    padding-bottom:10px;
+    height:20px;
+    text-align:center;
+}
+
+#oneDay{
+    border:1px black solid;
+}
+#oneDay h2{
+    margin:5%;
+    margin-top:0px;
+}
+#oneDay img{
+    margin:7%;
+    margin-top:0px;
+    margin-bottom:0px;
+    height:7%;
+    width:7%;
+}
+#fiveDay{
+    display:flex;
+    justify-content:space-between;
+}
+#fiveDay h4{
+    margin:5%
+}
+.littleCard{
+    border:1px black solid;
+    width:25%;
+    height:100%;
+}

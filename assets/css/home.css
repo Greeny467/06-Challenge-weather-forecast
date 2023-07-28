@@ -1,0 +1,35 @@
+header{
+    padding:15px;
+    width:100%;
+    background-color:brown;
+    color:white;
+    font-size:25px;
+
+}
+main{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    width:100%;
+    justify-content:center;
+}
+#searchBar{
+    margin:10%;
+    margin-left:40%;
+    margin-right:40%;
+    margin-bottom:15px;
+}
+#cardHolder{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content:center;
+    width:100%;
+}
+
+.cityCard{
+    height:20vh;
+    text-align:center;
+    padding:5%;
+    padding-bottom:10%;
+}
