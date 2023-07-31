@@ -1263,7 +1263,6 @@ function cityButtonPress(cityChoice, stateOfCity, event){
             ButtoncityChoice = target.dataset.name
             console.log(ButtoncityChoice)
             ButtonstateOfCity = target.dataset.state
-            console.log(ButtonstateOfCity + "888")
             cityButtonPress(ButtoncityChoice, ButtonstateOfCity, event1)
         })
     }
@@ -1540,31 +1539,7 @@ function searchReturn(){
 
 searchButton.addEventListener("click", function(){
 
-    var elementAmount= rightSide.children.length
-    console.log(elementAmount)
-    if (elementAmount =1){
-        cardAmount = cardHolder.children.length
-        for(i = 0; i < cardAmount; i++){
-            cardHolder.firstChild.remove()
-        }
-    }
-    if (elementAmount = 2){
-        var data1 = document.querySelector("#oneDay")
-        var data2 = document.querySelector("#fiveDay")
-
-        cardAmount1 = data1.children.length
-        for(i = 0; i < cardAmount1; i++){
-            data1.firstChild.remove()
-        }
-
-        cardAmount2 = data2.children.length
-        for(i = 0; i < cardAmount2; i++){
-            data2.firstChild.remove()
-        }
-    }
-    for(i = 0;i < elementAmount;i++){
-        rightSide.firstChild.remove();
-    }
+    rightSide.innerHTML = null;
 
     searchSubmit();
     searchReturn();
